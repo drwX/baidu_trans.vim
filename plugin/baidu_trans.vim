@@ -70,11 +70,11 @@ if !exists(":E2C")
     command! -nargs=+ E2C :echo Baidu_Translate("en","zh",<q-args>)
 endif
 if !exists(":C2E")
-    command! -nargs=+ A2E :echo Baidu_Translate("zh","en",<q-args>)
+    command! -nargs=+ C2E :echo Baidu_Translate("zh","en",<q-args>)
 endif
 if !exists(":A2C")
     command! -nargs=+ A2C :echo Baidu_Translate("auto","zh",<q-args>)
 endif
 if !exists(":A2E")
-    command! -nargs=+ C2E :echo Baidu_Translate("auto","en",<q-args>)
+    command! -nargs=+ A2E :echo Baidu_Translate("auto","en",<q-args>)
 endif
