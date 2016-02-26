@@ -8,7 +8,7 @@
 function! Baidu_Translate(lan1,lan2,word)
 python << EOM
 #coding=utf-8
-import vim,urllib,urllib2,json
+import vim,urllib,urllib2,json,time,hashlib
 word = vim.eval("a:word")
 word=word.replace('\n','')
 rword = urllib.urlencode({'q':word})
@@ -17,7 +17,8 @@ lan2 = vim.eval("a:lan2")
 headers = {
     'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
 }
-url = 'http://openapi.baidu.com/public/2.0/bmt/translate?client_id=cWa3lFifRbmYr37Pim3ljv40&' + rword + '&from=' + lan1 + '&to=' + lan2
+tm = str(int(time.time()))
+url = 'http://openapi.baidu.com/public/2.0/bmt/translate?appid=20160226000013643&salt=' + tm + '&q=' + rword + '&from=' + lan1 + '&to=' + lan2 + '&sign=' + hashlib.md5('20160226000013643' + rword + tm + 'Ih8adJtQ0gylKxu0QkAC').hexdigest()
 
 req = urllib2.Request(
     url = url,
